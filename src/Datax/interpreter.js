@@ -40,13 +40,13 @@ export default function interpreter (code) {
     runtime.curNode = new MapNode(() => { }, runtime)
 
     script = script || (() => {
-      return new vm.Script(code, { timeout: 1000 * 6 })
+      return new vm.Script(code, { })
     })()
 
     try {
       script.runInNewContext(Object.assign({}, customContext, context, systemAPI, {
         $exports: dataExports,
-      }))
+      }), { timeout: 1000 * 6 })
     } catch (err) {
       const errLine = err.stack.match(/<anonymous>:(\d+):\d+/)[1]
       const errMessage = err.message
