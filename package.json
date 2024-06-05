@@ -1,33 +1,40 @@
 {
   "name": "@shushu.pro/datax",
-  "version": "0.0.2",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "version": "0.1.0",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "author": "sschen86@163.com",
   "license": "MIT",
-  "dependencies": {
-    "@shushu.pro/mockv": "^0.0.1"
-  },
-  "devDependencies": {
-    "js-beautify": "^1.13.0",
-    "test996": "^0.0.3"
-  },
-  "scripts": {
-    "dev": "npm run dev-browser",
-    "dev-node": "nodemon --exec babel-node ./playground/index",
-    "dev-browser": "rollup -c ./config/rollup.dev.js -w",
-    "build": "rimraf dist && rollup -c ./config/rollup.build.js",
-    "deploy": "npm run test && npm run build && npm version patch && npm publish --access=public",
-    "test": "jest test"
-  },
   "keywords": [
-    "@shushu.pro"
+    "@shushu.pro",
+    "data mock"
   ],
+  "description": "数据mock",
   "repository": "https://github.com/shushu-pro/datax.git",
   "files": [
-    "dist/",
-    "README.md",
-    "CHANGELOG.md",
-    "LICENSE"
-  ]
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "rollup -c ./rollup/dev.config.mjs -w",
+    "build": "rimraf ./dist && rollup -c ./rollup/build.config.mjs",
+    "pages": "rollup -c ./rollup/pages.config.mjs -w",
+    "test": "vitest",
+    "dev-test": "vitest payload"
+  },
+  "dependencies": {
+    "@shushu.pro/mockv": "workspace:~"
+  },
+  "devDependencies": {
+    "@shushu.pro/rollup": "workspace:~",
+    "@types/jquery": "^3.5.22",
+    "@types/js-beautify": "^1.14.2",
+    "js-beautify": "^1.14.9",
+    "typescript": "^5.4.3",
+    "vitest": "^0.34.4"
+  }
 }

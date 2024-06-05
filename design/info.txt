@@ -1,0 +1,13 @@
+// 1.初始化matchers（定义->解析）
+// 2.初始化cursor（代码扫描器游标）
+// 3.从mainMatcher中启动扫描程序开始生成matcherRuntimes
+// 4.遍历所有runtimes构建语法树(SyntaxTreeBuilder)
+// 5.从语法树中生成jscode
+// 6.注入上下文环境并执行jscode返回结果(CodeExplainer)
+
+
+
+1.初始化编译器：创建matchers -> 创建cursor -> 创建treeBuilder
+2.执行编译：创建rootRuntime -> 启动scaner -> 生成结果runtimeTree
+3.执行转译：遍历runtimeTree -> 调用treeBuilder -> 生成转译结果tree/code
+4.执行代码：获取code -> 初始化上下文执行环境（注入环境变量 + 初始化运算函数） -> 返回结果
