@@ -95,10 +95,7 @@ export class GroupMatcher extends ParentMatcher {
     // 存在下一个or分支，进入or分支扫描
     if (selfRuntime.tempOrChild.nextSibling && !error.matchStop) {
       // 假如新的错误扫描的更远，则更新错误
-      if (
-        !selfRuntime.tempError ||
-        selfRuntime.tempError.bIndex <= error.bIndex
-      ) {
+      if (!selfRuntime.tempError || selfRuntime.tempError.bIndex <= error.bIndex) {
         selfRuntime.tempError = error;
       }
 
@@ -107,17 +104,11 @@ export class GroupMatcher extends ParentMatcher {
       selfRuntime.tempAndChild.scan(selfRuntime);
     }
     // 不满足必须集并且部分匹配
-    else if (
-      selfRuntime.matches < this.m ||
-      (partialMatched && error.matchStop)
-    ) {
+    else if (selfRuntime.matches < this.m || (partialMatched && error.matchStop)) {
       const { tempError } = selfRuntime;
       // console.info('@@@@########', bIndex);
       selfRuntime.reject({
-        bIndex: (tempError && tempError.bIndex > error.bIndex
-          ? tempError
-          : error
-        ).bIndex,
+        bIndex: (tempError && tempError.bIndex > error.bIndex ? tempError : error).bIndex,
         partialMatched,
       });
     }

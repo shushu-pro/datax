@@ -10,9 +10,7 @@ export class LinkMatcher extends ParentMatcher {
   }
 
   scan(parentRuntime: Runtime) {
-    parentRuntime
-      .getMatcher(this.id)
-      .scan(parentRuntime.createChildRuntime(this));
+    parentRuntime.getMatcher(this.id).scan(parentRuntime.createChildRuntime(this));
   }
 
   childSuccess(childRuntime: Runtime) {

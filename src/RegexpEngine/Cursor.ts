@@ -106,9 +106,7 @@ export class Cursor {
   }
 
   text(bIndex: number, eIndex = bIndex + 100) {
-    return this.chAlls
-      .slice(bIndex, Math.min(this.chAlls.length, eIndex))
-      .join('');
+    return this.chAlls.slice(bIndex, Math.min(this.chAlls.length, eIndex)).join('');
   }
 
   docLine(bIndex: number) {

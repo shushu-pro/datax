@@ -120,9 +120,7 @@ export class HookMatcher extends ParentMatcher {
         // 分组结束
         case !matchGroupClose: {
           curMatcher = curGroup;
-          curGroup.putEnd(
-            (source as string).slice(debugGroupBeginIndexStack.pop(), index + 1)
-          );
+          curGroup.putEnd((source as string).slice(debugGroupBeginIndexStack.pop(), index + 1));
           curGroup = groupStack.pop();
           break;
         }
